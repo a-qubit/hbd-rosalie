@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday, Rosalie! 🌹</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- ===== AMBIENT BACKGROUND ELEMENTS ===== -->
+  <div id="bg-balloons" aria-hidden="true"></div>
+  <div id="sparkle-layer" aria-hidden="true"></div>
+  <canvas id="confetti-canvas" aria-hidden="true"></canvas>
+
+  <!-- ===== MUSIC BUTTON ===== -->
+  <button id="music-btn" aria-label="Toggle background music" title="Play / Pause Music">
+    🎵
+  </button>
+  <!-- Hidden audio – swap src for a real audio file if desired -->
+  <audio id="bg-music" loop>
+    <source src="music/birthday.mp3" type="audio/mpeg" />
+  </audio>
+
+  <!-- ========================================================
+       HERO SECTION
+  ======================================================== -->
+  <section id="hero">
+    <div class="hero-inner">
+      <h1 class="hero-title">
+        <span class="emoji-bounce">🎉</span>
+        Happy Birthday,<br /><em class="name-glow">Rosalie!</em>
+        <span class="emoji-bounce">🎉</span>
+      </h1>
+      <p id="typewriter" class="typewriter" aria-label="A special surprise made with friendship, memories, and gratitude."></p>
+
+      <!-- Animated Cake -->
+      <div class="cake-wrap" aria-label="Birthday cake illustration">
+        <div class="cake-top"></div>
+        <div class="cake-bottom"></div>
+        <div class="candles">
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+          <div class="candle"><div class="flame"></div></div>
+        </div>
+        <div class="cake-deco"></div>
+      </div>
+
+      <!-- Fireworks canvas just for hero -->
+      <canvas id="fireworks-canvas" aria-hidden="true"></canvas>
+
+      <a href="#task1" class="btn-start hero-cta">✨ Begin the Surprise ✨</a>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TASK 1 — Click 10 floating hearts
+  ======================================================== -->
+  <section id="task1" class="task-section locked" data-task="1">
+    <div class="task-card glass">
+      <div class="lock-icon">🔒</div>
+      <h2>Challenge 1 of 5</h2>
+      <p class="task-desc">Click <strong>10 floating hearts</strong> to unlock the next surprise!</p>
+      <div id="hearts-arena" aria-label="Heart clicking area"></div>
+      <p id="heart-counter" class="counter">Hearts clicked: <span>0</span> / 10</p>
+    </div>
+    <div class="unlock-flash" aria-hidden="true"></div>
+  </section>
+
+  <!-- Unlocked: Friendship Message -->
+  <section id="msg-section" class="content-section hidden">
+    <div class="content-card glass">
+      <h2 class="section-heading">💌 A Letter for You</h2>
+      <div id="friendship-msg" class="friendship-msg">
+        <p>My Dear Friend Rosalie,</p>
+        <p>I don't know how we became such good friends but it's my very pleasure that you are my friend. I really feel so comfortable with you. Thank you for your company. You have made my mind charm.</p>
+        <p><strong>Happy Birthday, my Rosalie.</strong></p>
+      </div>
+      <a href="#task2" class="btn-next">Next Challenge →</a>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TASK 2 — Solve a simple puzzle
+  ======================================================== -->
+  <section id="task2" class="task-section locked" data-task="2">
+    <div class="task-card glass">
+      <div class="lock-icon">🔒</div>
+      <h2>Challenge 2 of 5</h2>
+      <p class="task-desc">Answer the question to continue!</p>
+      <p class="puzzle-q">🎂 What is <strong>5 + 7</strong>?</p>
+      <div class="puzzle-input-wrap">
+        <input id="puzzle-input" type="number" placeholder="Your answer…" aria-label="Puzzle answer" />
+        <button id="puzzle-submit" class="btn-check">Check ✓</button>
+      </div>
+      <p id="puzzle-msg" class="puzzle-msg" aria-live="polite"></p>
+    </div>
+    <div class="unlock-flash" aria-hidden="true"></div>
+  </section>
+
+  <!-- Unlocked: Rose / Rosalie section -->
+  <section id="rose-section" class="content-section hidden">
+    <div id="petal-container" aria-hidden="true"></div>
+    <div class="rose-content">
+      <h2 class="section-heading rose-heading">🌹 For My Rosalie 🌹</h2>
+      <div class="blooming-roses" aria-label="Blooming roses illustration">
+        <div class="rose r1">🌹</div>
+        <div class="rose r2">🌹</div>
+        <div class="rose r3">🌹</div>
+      </div>
+      <div class="heart-particles" aria-hidden="true" id="heart-particles"></div>
+      <p class="rose-quote">Just like a rose, you bring colour, fragrance, and beauty into every life you touch. 🌹</p>
+    </div>
+    <a href="#task3" class="btn-next">Next Challenge →</a>
+  </section>
+
+  <!-- ========================================================
+       TASK 3 — Drag gift into box
+  ======================================================== -->
+  <section id="task3" class="task-section locked" data-task="3">
+    <div class="task-card glass">
+      <div class="lock-icon">🔒</div>
+      <h2>Challenge 3 of 5</h2>
+      <p class="task-desc">Drag the <strong>🎁 gift</strong> into the <strong>📦 box</strong>!</p>
+      <div class="drag-arena">
+        <div id="gift-item" class="gift draggable" draggable="true" aria-label="Gift to drag" role="img">🎁</div>
+        <div id="gift-box" class="gift-box drop-target" aria-label="Gift box drop zone" role="region" aria-dropeffect="move">📦<span class="drop-hint">Drop here</span></div>
+      </div>
+    </div>
+    <div class="unlock-flash" aria-hidden="true"></div>
+  </section>
+
+  <!-- Unlocked: Photo Gallery -->
+  <section id="gallery-section" class="content-section hidden">
+    <div class="content-card glass">
+      <h2 class="section-heading">📸 Our Memories</h2>
+      <div class="photo-grid">
+        <div class="photo-card">
+          <img src="images/photo1.jpg" alt="Memory 1" loading="lazy" />
+          <p class="photo-caption">A memory to treasure forever 💛</p>
+        </div>
+        <div class="photo-card">
+          <img src="images/photo2.jpg" alt="Memory 2" loading="lazy" />
+          <p class="photo-caption">Smiles that light up the world ✨</p>
+        </div>
+      </div>
+      <a href="#task4" class="btn-next">Next Challenge →</a>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TASK 4 — Find and click the hidden rose
+  ======================================================== -->
+  <section id="task4" class="task-section locked" data-task="4">
+    <div class="task-card glass">
+      <div class="lock-icon">🔒</div>
+      <h2>Challenge 4 of 5</h2>
+      <p class="task-desc">Find and click the <strong>hidden 🌹 rose</strong> in the garden below!</p>
+      <div id="rose-garden" class="rose-garden" aria-label="Garden to search"></div>
+      <p id="rose-hint" class="hint-text" aria-live="polite">Hint: look carefully… it's hiding among the leaves 🍃</p>
+    </div>
+    <div class="unlock-flash" aria-hidden="true"></div>
+  </section>
+
+  <!-- Unlocked: Timeline -->
+  <section id="timeline-section" class="content-section hidden">
+    <div class="content-card glass">
+      <h2 class="section-heading">🕰️ Our Friendship Journey</h2>
+      <ol class="timeline" aria-label="Friendship milestones">
+        <li class="tl-item">
+          <div class="tl-icon">🌟</div>
+          <div class="tl-body"><strong>We met</strong><p>The beginning of something truly special.</p></div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-icon">🤝</div>
+          <div class="tl-body"><strong>We became good friends</strong><p>Laughter, secrets, and endless conversations.</p></div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-icon">💬</div>
+          <div class="tl-body"><strong>Shared many conversations</strong><p>Every talk made our bond stronger.</p></div>
+        </li>
+        <li class="tl-item">
+          <div class="tl-icon">🎂</div>
+          <div class="tl-body"><strong>Today we celebrate YOU</strong><p>Happy Birthday, Rosalie — you deserve the world! 🌹</p></div>
+        </li>
+      </ol>
+      <a href="#task5" class="btn-next">Final Challenge →</a>
+    </div>
+  </section>
+
+  <!-- ========================================================
+       TASK 5 — Pop 5 balloons
+  ======================================================== -->
+  <section id="task5" class="task-section locked" data-task="5">
+    <div class="task-card glass">
+      <div class="lock-icon">🔒</div>
+      <h2>Challenge 5 of 5 — The Final One!</h2>
+      <p class="task-desc">Pop <strong>5 balloons</strong> to unlock the Grand Finale! 🎈</p>
+      <div id="balloon-arena" aria-label="Balloons to pop"></div>
+      <p id="balloon-counter" class="counter">Balloons popped: <span>0</span> / 5</p>
+    </div>
+    <div class="unlock-flash" aria-hidden="true"></div>
+  </section>
+
+  <!-- ========================================================
+       GRAND FINALE
+  ======================================================== -->
+  <section id="finale" class="content-section hidden">
+    <div class="finale-inner">
+      <h2 id="finale-msg" class="finale-msg">
+        Happy Birthday,<br />My Dear <em>Rosalie!</em><br />
+        May your life always bloom like the most beautiful red rose. 🌹❤️
+      </h2>
+      <div class="finale-roses" aria-hidden="true">
+        <span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span><span>🌹</span>
+      </div>
+      <button id="replay-btn" class="btn-replay">↺ Replay All Animations</button>
+    </div>
+  </section>
+
+  <!-- ===== SUCCESS TOAST ===== -->
+  <div id="success-toast" class="success-toast" role="alert" aria-live="assertive">
+    <span id="toast-text">🎉 Section unlocked!</span>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
