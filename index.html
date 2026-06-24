@@ -134,16 +134,30 @@
   <section id="gallery-section" class="content-section hidden">
     <div class="content-card glass">
       <h2 class="section-heading">📸 Our Memories</h2>
-      <div class="photo-grid">
-        <div class="photo-card">
-          <img src="1.jpeg" alt="Memory 1" loading="lazy" />
-          <p class="photo-caption">A memory to treasure forever 💛</p>
+
+      <div class="photo-gallery-wrap">
+        <div id="photo-grid" class="photo-grid code-locked">
+          <div class="photo-card">
+            <img src="1.jpeg" alt="Memory 1" loading="lazy" />
+            <p class="photo-caption">A memory to treasure forever 💛</p>
+          </div>
+          <div class="photo-card">
+            <img src="2.jpeg" alt="Memory 2" loading="lazy" />
+            <p class="photo-caption">Smiles that light up the world ✨</p>
+          </div>
         </div>
-        <div class="photo-card">
-          <img src="2.jpeg" alt="Memory 2" loading="lazy" />
-          <p class="photo-caption">Smiles that light up the world ✨</p>
+
+        <div id="code-gate" class="code-gate glass">
+          <div class="lock-icon">🔐</div>
+          <p class="task-desc">Enter the <strong>secret code</strong> to reveal the pictures!</p>
+          <div class="puzzle-input-wrap">
+            <input id="code-input" type="text" placeholder="Secret code…" aria-label="Secret code" autocomplete="off" autocapitalize="off" spellcheck="false" />
+            <button id="code-submit" class="btn-check">Unlock 🔓</button>
+          </div>
+          <p id="code-msg" class="puzzle-msg" aria-live="polite"></p>
         </div>
       </div>
+
       <a href="#task4" class="btn-next">Next Challenge →</a>
     </div>
   </section>

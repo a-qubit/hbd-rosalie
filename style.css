@@ -409,6 +409,31 @@ section { position: relative; z-index: 2; padding: 80px 20px; }
 }
 .photo-caption { padding: 12px 10px 14px; font-size: 0.88rem; color: var(--blush); }
 
+/* secret-code gate over the gallery */
+.photo-gallery-wrap { position: relative; }
+
+.photo-grid.code-locked {
+  filter: blur(20px) brightness(0.6);
+  pointer-events: none;
+  user-select: none;
+  transition: filter 0.8s ease;
+}
+.photo-grid.code-locked.revealed {
+  filter: blur(0) brightness(1);
+  pointer-events: auto;
+  user-select: auto;
+}
+
+.code-gate {
+  position: absolute; inset: 0;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; padding: clamp(20px, 5vw, 40px);
+  z-index: 5;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+.code-gate.fade-out { opacity: 0; transform: scale(0.96); pointer-events: none; }
+#code-input { width: 180px; text-transform: lowercase; }
+
 /* =========================================================
    TASK 4 — HIDDEN ROSE
    ========================================================= */

@@ -340,6 +340,41 @@ function initTask3() {
 }
 
 /* ────────────────────────────────────────────────────────────
+   PHOTO GALLERY — SECRET CODE GATE
+   ──────────────────────────────────────────────────────────── */
+function initPhotoGate() {
+  const SECRET_CODE = 'aaabbhhrs';
+  const gate = document.getElementById('code-gate');
+  const grid = document.getElementById('photo-grid');
+  const input = document.getElementById('code-input');
+  const btn = document.getElementById('code-submit');
+  const msg = document.getElementById('code-msg');
+  if (!gate || !grid || !input || !btn || !msg) return;
+
+  btn.addEventListener('click', checkCode);
+  input.addEventListener('keydown', e => { if (e.key === 'Enter') checkCode(); });
+
+  function checkCode() {
+    const val = input.value.trim().toLowerCase();
+    if (val === SECRET_CODE) {
+      msg.textContent = '🎉 Correct! Revealing your memories…';
+      msg.className = 'puzzle-msg success';
+      input.disabled = true;
+      btn.disabled = true;
+      grid.classList.add('revealed');
+      gate.classList.add('fade-out');
+      showToast('📸 Secret code accepted! Photos revealed!');
+      setTimeout(() => gate.remove(), 600);
+    } else {
+      msg.textContent = '❌ Incorrect code — try again!';
+      msg.className = 'puzzle-msg error';
+      input.value = '';
+      input.focus();
+    }
+  }
+}
+
+/* ────────────────────────────────────────────────────────────
    TASK 4 — HIDDEN ROSE
    ──────────────────────────────────────────────────────────── */
 function initTask4() {
@@ -561,6 +596,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initTask2();
   initRoseSection();
   initTask3();
+  initPhotoGate();
   initTask4();
   initTimeline();
   initTask5();
